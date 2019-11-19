@@ -5,6 +5,8 @@ A tool which helps you improve the performance of Blue Iris 5 by analyzing your 
 
 This tool is in the "proof-of-concept" stage.  Currently, it only knows how to find profiles where Direct-to-disc recording is not enabled, and enable it with one click per camera.  (changes don't take effect until Blue Iris is restarted)
 
+![screenshot](https://i.imgur.com/QlUXlnr.png)
+
 **Planned features:**  
 * Give advice on many more subjects.
   * Hardware acceleration
