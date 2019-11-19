@@ -3,7 +3,7 @@ A tool which helps you improve the performance of Blue Iris 5 by analyzing your 
 
 ## Proof of Concept
 
-This tool is in the "proof-of-concept" stage.  Currently, the only advice it knows how to give relates to enabling Direct-to-disc recording.
+This tool is in the "proof-of-concept" stage.  Currently, it only knows how to find profiles where Direct-to-disc recording is not enabled, and enable it with one click per camera.  (changes don't take effect until Blue Iris is restarted)
 
 **Planned features:**  
 * Give advice on many more subjects.
@@ -15,6 +15,7 @@ This tool is in the "proof-of-concept" stage.  Currently, the only advice it kno
   * Disable automatic updates in Blue Iris
   * Disk space allocation
   * … much more
+* Ability to restart Blue Iris after making configuration changes.
 * Ability to "ignore" any advice item.
 * Ability to show "ignored" advice items.
 * Ability to render a configuration summary that can be copied into support forums.
