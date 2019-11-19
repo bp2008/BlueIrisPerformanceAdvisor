@@ -20,8 +20,12 @@ This tool is in the "proof-of-concept" stage.  Currently, it only knows how to f
 * Ability to show "ignored" advice items.
 * Ability to render a configuration summary that can be copied into support forums.
 * Automatic backup of Blue Iris configuration upon app start.
-
+* Ability to cope with Blue Iris not being installed on a system it is run on.
 
 ## Compatibility
 
 This tool is was tested against Blue Iris 5.0.6.6.  Not compatible with Blue Iris 4.
+
+## Usage
+
+Download the latest release from [the Releases tab](https://github.com/bp2008/BlueIrisPerformanceAdvisor/releases) and extract it anywhere on a computer with Blue Iris on it, then run `BlueIrisPerformanceAdvisor.exe`
