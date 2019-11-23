@@ -67,6 +67,32 @@ namespace BlueIrisPerformanceAdvisor.Advice
 					}
 				}
 
+				bool hasIntelGPU = c.gpus.Any(gpu => gpu.Intel);
+				bool hasNvidiaGPU = c.gpus.Any(gpu => gpu.Nvidia);
+				if (hasIntelGPU)
+				{
+					if (c.global.HardwareAcceleration == HWAccel.Intel)
+					{
+						// Good!
+					}
+					else if (c.global.HardwareAcceleration == HWAccel.IntelVPP && c.cameras.Count > 4)
+						listAdvice.Add(new DontUseVPPAdvice(c));
+					else
+						listAdvice.Add(new UseIntelHwvaAdvice(c));
+				}
+				else if (hasNvidiaGPU)
+				{
+					if (c.global.HardwareAcceleration == HWAccel.Intel || c.global.HardwareAcceleration == HWAccel.IntelVPP)
+						listAdvice.Add(new UseNvidiaHwvaAdvice(c));
+					else if (c.global.HardwareAcceleration == HWAccel.No && c.activeStats.BiCpuUsage > 50)
+						listAdvice.Add(new UseNvidiaHwvaAdvice(c));
+				}
+				else
+				{
+					if (c.global.HardwareAcceleration != HWAccel.No)
+						listAdvice.Add(new UseNoHwvaAdvice(c));
+				}
+
 				AdviceReady(this, listAdvice);
 			}
 			catch (ThreadAbortException) { }
