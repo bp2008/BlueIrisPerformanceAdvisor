@@ -21,8 +21,9 @@ namespace BlueIrisPerformanceAdvisor.Advice.Items
 		{
 			return GetDescription() + Environment.NewLine + Environment.NewLine + "This message was shown because you have more than a few cameras and have VideoPostProc enabled by default";
 		}
-		public override void FixMe()
+		protected override void FixMe()
 		{
+			Logger.Info("Disabling VideoPostProc globally.");
 			RegistryUtil.SetHKLMValue(@"SOFTWARE\Perspective Software\Blue Iris\Options", "hwaccel", (int)HWAccel.Intel);
 		}
 	}

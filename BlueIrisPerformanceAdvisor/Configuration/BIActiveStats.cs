@@ -51,7 +51,7 @@ namespace BlueIrisPerformanceAdvisor.Configuration
 				}
 
 				// Wait for CPU usage to happen.
-				Thread.Sleep(1000);
+				Thread.Sleep(Debugger.IsAttached ? 1000 : 10000);
 
 				// Take CPU usage measurements.
 				CpuUsage = (byte)Math.Round(totalCpuCounter.NextValue());
@@ -62,7 +62,7 @@ namespace BlueIrisPerformanceAdvisor.Configuration
 					biProcs[i].Refresh();
 					if (biProcs[i].HasExited)
 					{
-						Logger.Info("Unable to calculate BI Active Stats Blue Iris exited while CPU usage was being measured.");
+						Logger.Info("Unable to calculate BI Active Stats because Blue Iris exited while CPU usage was being measured.");
 						return;
 					}
 					totalTime += biProcs[i].TotalProcessorTime - startTimes[i];

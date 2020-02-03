@@ -40,6 +40,14 @@ namespace BlueIrisPerformanceAdvisor
 				this.advice = advice;
 				this.lblStatus.Text = "";
 				panelActionObjects.Controls.Clear();
+				if (advice == null)
+				{
+					Label lblFailed = new Label();
+					lblFailed.AutoSize = true;
+					this.lblStatus.Text = lblFailed.Text = advisor.error;
+					panelActionObjects.Controls.Add(lblFailed);
+					return;
+				}
 				foreach (AdviceBase adviceItem in this.advice)
 				{
 					ActionableObject ao = new ActionableObject(adviceItem.name, adviceItem.GetDescription());

@@ -21,7 +21,7 @@ namespace BlueIrisPerformanceAdvisor.Configuration
 			if (options.DWord("limitlive") == 0)
 				LivePreviewFPS = -2;
 			else
-				LivePreviewFPS = RegistryUtil.GetHKLMValue<int>(@"SOFTWARE\Perspective Software\Blue Iris\Options", "livefps", -1);
+				LivePreviewFPS = RegistryUtil.GetHKLMValue<int>(@"SOFTWARE\Perspective Software\Blue Iris\Options", "livefps", -1); // Custom failure value of -1
 		}
 	}
 	public enum HWAccel : byte

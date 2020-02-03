@@ -1,4 +1,5 @@
 ﻿using BlueIrisPerformanceAdvisor.Configuration;
+using BPUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,15 @@ namespace BlueIrisPerformanceAdvisor.Advice
 		/// <returns></returns>
 		public abstract string GetDescription();
 		public abstract string LearnMore();
-		public abstract void FixMe();
+		protected abstract void FixMe();
+		public void Fix()
+		{
+			Logger.Info("Fixing: " + name);
+			FixMe();
+		}
+		public void Ignore()
+		{
+			Logger.Info("Ignoring: " + name);
+		}
 	}
 }

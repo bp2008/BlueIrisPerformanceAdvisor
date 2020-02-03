@@ -8,6 +8,8 @@ namespace BlueIrisPerformanceAdvisor.Configuration
 {
 	public class BlueIrisConfiguration
 	{
+		public byte[] BiVersionBytes = new byte[4];
+		public string BiVersionFromRegistry;
 		public string OS;
 		public string AdvisorVersion;
 		public BIGlobalConfig global;
@@ -22,20 +24,27 @@ namespace BlueIrisPerformanceAdvisor.Configuration
 
 		public void Load()
 		{
+			int version = RegistryUtil.GetHKLMValue<int>(@"SOFTWARE\Perspective Software\Blue Iris", "version", 0);
+			ByteUtil.WriteInt32(version, BiVersionBytes, 0);
+			BiVersionFromRegistry = string.Join(".", BiVersionBytes);
 			OS = GetOsVersion();
 			AdvisorVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-			global = new BIGlobalConfig();
-			global.Load();
 			RegistryKey camerasKey = RegistryUtil.GetHKLMKey(@"SOFTWARE\Perspective Software\Blue Iris\Cameras");
-			foreach (string camName in camerasKey.GetSubKeyNames())
-				cameras.Add(camName, new Camera(camName, camerasKey.OpenSubKey(camName)));
-			cpu = CpuInfo.GetCpuInfo();
-			gpus = GpuInfo.GetGpuInfo();
-			mem = RamInfo.GetRamInfo();
+			if (camerasKey != null)
+			{
+				global = new BIGlobalConfig();
+				global.Load();
 
-			activeStats = new BIActiveStats();
-			activeStats.Load();
+				foreach (string camName in camerasKey.GetSubKeyNames())
+					cameras.Add(camName, new Camera(camName, camerasKey.OpenSubKey(camName)));
+				cpu = CpuInfo.GetCpuInfo();
+				gpus = GpuInfo.GetGpuInfo();
+				mem = RamInfo.GetRamInfo();
+
+				activeStats = new BIActiveStats();
+				activeStats.Load();
+			}
 		}
 
 		public static string GetOsVersion()

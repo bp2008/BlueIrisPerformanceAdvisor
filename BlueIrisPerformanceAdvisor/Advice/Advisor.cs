@@ -15,7 +15,15 @@ namespace BlueIrisPerformanceAdvisor.Advice
 	{
 		Thread thrAdviceGenerator = null;
 
+		/// <summary>
+		/// Raised when advice is ready. If there was a problem, the advice list passed here will be null, and the <see cref="error"/> field will contain an error message.
+		/// </summary>
 		public event EventHandler<List<AdviceBase>> AdviceReady = delegate { };
+
+		/// <summary>
+		/// If not null, this advisor had an error and this is its message.
+		/// </summary>
+		public string error = null;
 
 		public Advisor()
 		{
@@ -41,6 +49,16 @@ namespace BlueIrisPerformanceAdvisor.Advice
 			{
 				BlueIrisConfiguration c = new BlueIrisConfiguration();
 				c.Load();
+				if (c.global == null)
+				{
+					error = "Unable to generate advice. Blue Iris may not be installed properly.";
+					return;
+				}
+				if (c.BiVersionBytes[0] != 5)
+				{
+					error = "Unable to generate advice. Detected an unsupported Blue Iris version \"" + c.BiVersionFromRegistry + "\".";
+					return;
+				}
 
 				List<AdviceBase> listAdvice = new List<AdviceBase>();
 
@@ -99,7 +117,12 @@ namespace BlueIrisPerformanceAdvisor.Advice
 			catch (Exception ex)
 			{
 				Logger.Debug(ex);
-				MessageBox.Show(ex.ToString());
+				error = "An error occurred: " + ex.Message + Environment.NewLine + "See log for more information.";
+			}
+			finally
+			{
+				if(error != null)
+					AdviceReady(this, null);
 			}
 		}
 	}

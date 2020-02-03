@@ -25,10 +25,13 @@ namespace BlueIrisPerformanceAdvisor.Advice.Items
 		{
 			return "Direct-to-disc is highly recommended for efficiency reasons. When using Direct-to-disc, you should make sure your camera embeds its own accurate timestamp.";
 		}
-		public override void FixMe()
+		protected override void FixMe()
 		{
 			foreach (int profile in profiles)
+			{
+				Logger.Info("Enabling Direct-to-disc for \"" + cameraName + "\" profile " + profile);
 				RegistryUtil.SetHKLMValue(@"SOFTWARE\Perspective Software\Blue Iris\Cameras\" + cameraName + @"\Clips\" + profile, "transcode", 0);
+			}
 		}
 	}
 }

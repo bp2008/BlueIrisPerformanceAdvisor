@@ -21,8 +21,9 @@ namespace BlueIrisPerformanceAdvisor.Advice.Items
 		{
 			return "An Nvidia GPU was detected in your system.  If it is NVDEC-compatible, you could reduce your CPU usage by utilizing the GPU for hardware acceleration.";
 		}
-		public override void FixMe()
+		protected override void FixMe()
 		{
+			Logger.Info("Enabling Nvidia hardware acceleration globally.");
 			RegistryUtil.SetHKLMValue(@"SOFTWARE\Perspective Software\Blue Iris\Options", "hwaccel", (int)HWAccel.NvidiaCUDA);
 		}
 	}

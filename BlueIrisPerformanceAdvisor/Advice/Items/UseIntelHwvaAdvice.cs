@@ -21,8 +21,9 @@ namespace BlueIrisPerformanceAdvisor.Advice.Items
 		{
 			return GetDescription() + Environment.NewLine + Environment.NewLine + "To use Intel Quick Sync acceleration properly in Blue Iris, your IP cameras must encode their video streams using the H.264 codec.";
 		}
-		public override void FixMe()
+		protected override void FixMe()
 		{
+			Logger.Info("Enabling Intel hardware acceleration globally.");
 			RegistryUtil.SetHKLMValue(@"SOFTWARE\Perspective Software\Blue Iris\Options", "hwaccel", (int)HWAccel.Intel);
 		}
 	}

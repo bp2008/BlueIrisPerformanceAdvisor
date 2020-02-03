@@ -21,8 +21,9 @@ namespace BlueIrisPerformanceAdvisor.Advice.Items
 		{
 			return "Attempting to use hardware acceleration without appropriate hardware is sloppy and may result in unexpected behavior.";
 		}
-		public override void FixMe()
+		protected override void FixMe()
 		{
+			Logger.Info("Disabling hardware acceleration globally.");
 			RegistryUtil.SetHKLMValue(@"SOFTWARE\Perspective Software\Blue Iris\Options", "hwaccel", (int)HWAccel.No);
 		}
 	}

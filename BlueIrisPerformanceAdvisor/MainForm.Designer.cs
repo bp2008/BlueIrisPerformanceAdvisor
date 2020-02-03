@@ -29,7 +29,12 @@
 		private void InitializeComponent()
 		{
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.panelActionObjects = new System.Windows.Forms.FlowLayoutPanel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tpAdvice = new System.Windows.Forms.TabPage();
 			this.tpConfigSummary = new System.Windows.Forms.TabPage();
@@ -38,8 +43,9 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.tpSettings = new System.Windows.Forms.TabPage();
 			this.cb32on64 = new System.Windows.Forms.CheckBox();
-			this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusStrip1.SuspendLayout();
+			this.panelActionObjects.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tpAdvice.SuspendLayout();
 			this.tpConfigSummary.SuspendLayout();
@@ -53,9 +59,15 @@
             this.lblStatus});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 379);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(474, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(554, 22);
 			this.statusStrip1.TabIndex = 1;
 			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// lblStatus
+			// 
+			this.lblStatus.Name = "lblStatus";
+			this.lblStatus.Size = new System.Drawing.Size(52, 17);
+			this.lblStatus.Text = "lblStatus";
 			// 
 			// panelActionObjects
 			// 
@@ -65,10 +77,47 @@
 			this.panelActionObjects.AutoScroll = true;
 			this.panelActionObjects.BackColor = System.Drawing.Color.White;
 			this.panelActionObjects.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.panelActionObjects.Controls.Add(this.panel1);
 			this.panelActionObjects.Location = new System.Drawing.Point(0, 0);
 			this.panelActionObjects.Name = "panelActionObjects";
-			this.panelActionObjects.Size = new System.Drawing.Size(462, 352);
+			this.panelActionObjects.Size = new System.Drawing.Size(542, 352);
 			this.panelActionObjects.TabIndex = 2;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.label4);
+			this.panel1.Controls.Add(this.label3);
+			this.panel1.Controls.Add(this.progressBar1);
+			this.panel1.Location = new System.Drawing.Point(3, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(451, 80);
+			this.panel1.TabIndex = 1;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(3, 53);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(368, 13);
+			this.label4.TabIndex = 2;
+			this.label4.Text = "This may take 10-15 seconds in order to get an accurate CPU measurement.";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(3, 5);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(54, 13);
+			this.label3.TabIndex = 1;
+			this.label3.Text = "Loading …";
+			// 
+			// progressBar1
+			// 
+			this.progressBar1.Location = new System.Drawing.Point(3, 24);
+			this.progressBar1.Name = "progressBar1";
+			this.progressBar1.Size = new System.Drawing.Size(445, 23);
+			this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+			this.progressBar1.TabIndex = 0;
 			// 
 			// tabControl1
 			// 
@@ -82,7 +131,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(2, 2);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(470, 377);
+			this.tabControl1.Size = new System.Drawing.Size(550, 377);
 			this.tabControl1.TabIndex = 3;
 			// 
 			// tpAdvice
@@ -92,7 +141,7 @@
 			this.tpAdvice.Location = new System.Drawing.Point(4, 22);
 			this.tpAdvice.Name = "tpAdvice";
 			this.tpAdvice.Padding = new System.Windows.Forms.Padding(3);
-			this.tpAdvice.Size = new System.Drawing.Size(462, 351);
+			this.tpAdvice.Size = new System.Drawing.Size(542, 351);
 			this.tpAdvice.TabIndex = 0;
 			this.tpAdvice.Text = "Advice";
 			// 
@@ -159,17 +208,11 @@
 			this.cb32on64.UseVisualStyleBackColor = true;
 			this.cb32on64.CheckedChanged += new System.EventHandler(this.SettingChanged);
 			// 
-			// lblStatus
-			// 
-			this.lblStatus.Name = "lblStatus";
-			this.lblStatus.Size = new System.Drawing.Size(52, 17);
-			this.lblStatus.Text = "lblStatus";
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(474, 401);
+			this.ClientSize = new System.Drawing.Size(554, 401);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.statusStrip1);
 			this.Name = "MainForm";
@@ -177,6 +220,9 @@
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			this.panelActionObjects.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tpAdvice.ResumeLayout(false);
 			this.tpConfigSummary.ResumeLayout(false);
@@ -202,6 +248,10 @@
 		private System.Windows.Forms.TabPage tpSettings;
 		private System.Windows.Forms.CheckBox cb32on64;
 		private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+		private System.Windows.Forms.ProgressBar progressBar1;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label4;
 	}
 }
 
