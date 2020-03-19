@@ -66,7 +66,7 @@ namespace BlueIrisPerformanceAdvisor
 
 					ao.OnFixMeClicked += (ignored1, ignored2) =>
 					{
-						adviceItem.FixMe();
+						adviceItem.Fix();
 						RemoveActionableObject(ao);
 					};
 

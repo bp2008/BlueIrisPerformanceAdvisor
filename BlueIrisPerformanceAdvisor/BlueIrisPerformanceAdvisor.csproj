@@ -47,7 +47,6 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,16 +70,7 @@
     <Compile Include="Advice\Items\UseNvidiaHwvaAdvice.cs" />
     <Compile Include="Advice\Items\UseIntelHwvaAdvice.cs" />
     <Compile Include="Advice\Items\DontUseVPPAdvice.cs" />
-    <Compile Include="Configuration\BIActiveStats.cs" />
-    <Compile Include="Configuration\BIGlobalConfig.cs" />
-    <Compile Include="Configuration\Camera.cs" />
     <Compile Include="Advice\Items\EnableDirectToDiscAdvice.cs" />
-    <Compile Include="Configuration\BlueIrisConfiguration.cs" />
-    <Compile Include="Configuration\CpuInfo.cs" />
-    <Compile Include="Configuration\GpuInfo.cs" />
-    <Compile Include="Configuration\RamInfo.cs" />
-    <Compile Include="Configuration\TriggerTabSettings.cs" />
-    <Compile Include="Configuration\RecordTabSettings.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +125,10 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BlueIrisRegistryReader\BlueIrisRegistryReader\BlueIrisRegistryReader.csproj">
+      <Project>{2988730a-35fc-4eb0-aa52-21264b8f4540}</Project>
+      <Name>BlueIrisRegistryReader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BPUtil\BPUtil\BPUtil.csproj">
       <Project>{a4981d8d-debf-4b34-b9ce-ff25520a02b7}</Project>
       <Name>BPUtil</Name>

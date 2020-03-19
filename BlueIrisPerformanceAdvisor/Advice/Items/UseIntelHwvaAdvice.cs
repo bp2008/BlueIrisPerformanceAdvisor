@@ -1,4 +1,4 @@
-﻿using BlueIrisPerformanceAdvisor.Configuration;
+﻿using BlueIrisRegistryReader;
 using BPUtil;
 using System;
 using System.Collections.Generic;
